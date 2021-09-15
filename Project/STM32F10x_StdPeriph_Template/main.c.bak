@@ -1,0 +1,426 @@
+/**
+  ******************************************************************************
+  * @file    Project/STM32F10x_StdPeriph_Template/main.c 
+  * @author  MCD Application Team
+  * @version V3.5.0
+  * @date    08-April-2011
+  * @brief   Main program body
+  ******************************************************************************
+  * @attention
+  *
+  * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
+  * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE
+  * TIME. AS A RESULT, STMICROELECTRONICS SHALL NOT BE HELD LIABLE FOR ANY
+  * DIRECT, INDIRECT OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING
+  * FROM THE CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE
+  * CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
+  *
+  * <h2><center>&copy; COPYRIGHT 2011 STMicroelectronics</center></h2>
+  ******************************************************************************
+  */  
+
+/* Includes ------------------------------------------------------------------*/
+#include "stm32f10x.h"
+#include "stm32_eval.h"
+#include <stdio.h>
+
+
+__IO uint32_t LsiFreq = 40000;		// IWDG internal rc frequency (40KHz)
+
+
+int main(void)
+{   	
+	uint16_t AvrZoomAdc=0, AvrFocusAdc=0;
+    POWER_Init();                	// GPIO clock init, pwr init
+	
+	/*
+	// camera, laser, thermal switching regulators are off.
+    CAMERA_POWER_CTL( CAMERA_POWER_OFF );
+    LASER_POWER_CTL( LASER_POWER_OFF );
+    THERMAL_POWER_CTL( THERMAL_POWER_OFF );
+	*/
+    
+    Delay_ms(1000);
+
+	SpareGPIO_Init();
+        
+    //MCO_Init();			// Verify system clock 72MHz
+    LED_Init();
+    FAN_Init();
+    WIPER1_Init();
+    WIPER2_Init();
+    Relay_Init();
+    DIP_SW_Init();
+
+	DipSwAddress = dip_sw2_value();
+	DipSwSetting = dip_sw1_value();
+	
+    RS232_Init();		// control board interface
+    PT485_Init();
+	LASER485_Init();
+	THERMAL485_Init();
+	SPARE485_Init();
+    LENS_POWER_Init();
+    LENS_ZF_Init();
+	THERMAL_LENS_POWER_Init();
+	ThermalLensZFInit();
+	Timer2init();
+	adc_configure();
+	Init_24LC128_EEPROM();			// 16KByte eeprom
+
+
+	
+    
+    Delay_ms(10);
+    
+    CAMERA_POWER_CTL(CAMERA_POWER_ON );	
+    Delay_ms(500);   
+	AuxResponseValue |= 0x08;               // camera aux response value
+	LASER_POWER_CTL(LASER_POWER_ON);
+    Delay_ms(500);  
+    THERMAL_POWER_CTL(THERMAL_POWER_ON);	// Thermal camera is default On.
+	AuxResponseValue |= 0x10;               // Thernal camera aux response value
+	Delay_ms(500);
+
+	
+
+	if (SysTick_Config(SystemCoreClock / 1000))
+	{ 
+		while (1);
+	}
+
+	/* Check if the system has resumed from IWDG reset */
+	if (RCC_GetFlagStatus(RCC_FLAG_IWDGRST) != RESET)
+	{
+		/* IWDGRST flag set */
+		/* Turn on LED1 */
+		LED_ON_OFF(LED3,LED_ON);
+
+		/* Clear reset flags */
+		RCC_ClearFlag();
+	}
+	else
+	{
+		/* IWDGRST flag is not set */
+		/* Turn off LED1 */
+		LED_ON_OFF(LED3,LED_OFF);
+	}
+    
+    
+    PT485_INPUT;
+	THERMAL485_INPUT;
+	SPARE485_INPUT;
+    
+          
+    lens_power_source(LENS_8V2_ON);
+	ThermalLensPowerSource(THERMAL_LENS_8V2_ON);
+    Delay_ms(5);
+    
+    
+
+	/* IWDG timeout equal to 250 ms (the timeout may varies due to LSI frequency
+	 dispersion) */
+	/* Enable write access to IWDG_PR and IWDG_RLR registers */
+	IWDG_WriteAccessCmd(IWDG_WriteAccess_Enable);
+
+	/* IWDG counter clock: LSI/32 */
+	IWDG_SetPrescaler(IWDG_Prescaler_32);
+
+	/* Set counter reload value to obtain 250ms IWDG TimeOut.
+	 Counter Reload Value = 250ms/IWDG counter clock period
+	                      = 250ms / (LSI/32)
+	                      = 0.25s / (LsiFreq/32)
+	                      = LsiFreq/(32 * 4)
+	                      = LsiFreq/128
+	*/
+	IWDG_SetReload(LsiFreq/128);
+
+	/* Reload IWDG counter */
+	IWDG_ReloadCounter();
+
+	/* Enable IWDG (the LSI oscillator will be enabled by hardware) */
+	IWDG_Enable();
+
+  	if(Read_24LC128(FAN_ADDRESS) == 0xFF)    FanSettingValue = 35;
+	else                                    FanSettingValue = Read_24LC128(FAN_ADDRESS);
+
+	if(Read_24LC128(HEATER_ADDRESS) == 0xFF) HeaterSettingValue = 15;
+	else                                    HeaterSettingValue = Read_24LC128(HEATER_ADDRESS);
+
+	
+	
+	
+    while (1)
+    {
+		IWDG_ReloadCounter();  // WWDG (WATCHDOG TIMER) 250ms
+
+		
+	  	if(!time_1ms)
+	  	{
+			time_1ms = 1;
+			if(WiperStepTime) WiperStepTime--;		// 5ms		
+	  	}
+		if(!time_10ms)
+		{
+			time_10ms = 10;
+			if(ZoomFocusReadTime) ZoomFocusReadTime--;	              // 20ms
+			if(FanHeaterReadTime) FanHeaterReadTime--;                // 100ms
+			if(TemperatureReadTime) TemperatureReadTime--;            // 1S
+			if(FanHeaterAutoReleaseTime) FanHeaterAutoReleaseTime--;  // 6 Minute
+			if(FanHeaterAutoOffTime) FanHeaterAutoOffTime--;          // 6 Minute
+		}
+	  
+        
+        ControlBoardParsing();				// from control board
+
+
+		switch(DipSwSetting & 0x20)			
+		{
+			case 0x00 : PT485Parsing();				break;		// SHINWOO PROTOCOL
+			case 0x20 : PT485ParsingForPelcoD();		break;      // PELCO-D PROTOCOL
+		}
+
+
+	  	if(ParseComplete == 1)				// from control board
+	  	{
+			ProcessParsingData();
+			ParseComplete = 0;
+	  	}		
+
+
+		if(WiperRepeat)
+		{
+			wiper_motor2();
+			CheckWiperRun = 1;
+		}
+
+		
+		if( (CheckWiperRun == 1) && (WiperRepeat == 0) )
+		{
+			CheckWiperRun = 0;
+			AuxResponseValue &= 0xFE;
+			GPIOE->ODR = (GPIOE->ODR & 0xFFC3) & 0xFFC3;		// Cut all current for step motor
+			GPIOD->ODR = (GPIOD->ODR & 0xFF0F) & 0xFF0F;		// Cut all current for step motor
+		}
+
+		IWDG_ReloadCounter(); // WWDG (WATCHDOG TIMER) 250ms
+
+		
+		if(!ZoomFocusReadTime)	// 20ms
+		{
+			ZoomFocusReadTime = 2;	
+
+			/*
+			ZoomFocusBuffer[0] = ADC_CONVERT(LENS_ZOOM_ADC);		// Calculation ZOOM ADC
+			Delay_us(10);
+			
+			
+			ZoomFocusBuffer[1] = ADC_CONVERT(LENS_FOCUS_ADC);		// Calculation FOCUS ADC
+			Delay_us(10);
+
+			
+			ZoomFocusBuffer[2] = ADC_CONVERT(TH_ZOOM_ADC);			// Calculation Thermal zoom adc
+			Delay_us(10);
+
+			ZoomFocusBuffer[3] = ADC_CONVERT(TH_FOCUS_ADC);			// Calculation Thermal focus adc
+			Delay_us(10);
+			*/
+
+			AvrZoomAdc += ADC_CONVERT(LENS_ZOOM_ADC);		// Calculation ZOOM ADC
+			AvrZoomAdc += ADC_CONVERT(LENS_ZOOM_ADC);		// Calculation ZOOM ADC
+			AvrZoomAdc += ADC_CONVERT(LENS_ZOOM_ADC);		// Calculation ZOOM ADC
+			AvrZoomAdc += ADC_CONVERT(LENS_ZOOM_ADC);		// Calculation ZOOM ADC
+			
+			AvrZoomAdc = AvrZoomAdc >> 2;
+			ZoomFocusBuffer[0] = AvrZoomAdc;
+			Delay_us(10);
+			
+			
+			AvrFocusAdc += ADC_CONVERT(LENS_FOCUS_ADC);		// Calculation FOCUS ADC
+			AvrFocusAdc += ADC_CONVERT(LENS_FOCUS_ADC);		// Calculation FOCUS ADC
+			AvrFocusAdc += ADC_CONVERT(LENS_FOCUS_ADC);		// Calculation FOCUS ADC
+			AvrFocusAdc += ADC_CONVERT(LENS_FOCUS_ADC);		// Calculation FOCUS ADC
+
+			AvrFocusAdc = AvrFocusAdc >> 2;
+			ZoomFocusBuffer[1] = AvrFocusAdc;
+			Delay_us(10);
+
+			AvrZoomAdc = AvrFocusAdc = 0;
+
+			ZoomFocusBuffer[2] = ADC_CONVERT(TH_ZOOM_ADC);			// Calculation Thermal zoom adc
+			Delay_us(10);
+
+			ZoomFocusBuffer[3] = ADC_CONVERT(TH_FOCUS_ADC);			// Calculation Thermal focus adc
+			Delay_us(10);
+
+			
+
+			ZoomFocusMove();
+
+			/*
+			if( (ZoomDisableA == 1) || (ZoomDisableB == 1) )
+			{
+				ZoomMoveEnable = 1;
+
+				if( (FocusMoveDisableA == 1) || (FocusMoveDisableB == 1) )
+				{
+					ZoomMove();
+				}
+			}
+			*/
+
+			if( ((ZoomDisableA == 1) || (ZoomDisableB == 1)) && ((FocusMoveDisableA == 1) || (FocusMoveDisableB == 1)) )
+			{
+				ZoomMoveEnable = 1;
+
+				ZoomMove();
+			}
+		}
+
+		
+
+		// FAN & HEATER auto on/off time setting
+		if(!FanHeaterReadTime)
+		{
+			FanHeaterReadTime = 10;
+
+			if(NewTemperatureEnable == 1)
+			{
+				if((CurrentTempValue > FanSettingValue) && (CheckFanRun == 0))       // current temp > fan setting value
+				{
+					FanHeaterAutoOffTime = FAN_HEATER_RUNTIME;		// 6minutes
+					aux_on(AUX6);	
+					CheckFanRun = 1;			
+					FanRun = 1;	
+					CheckRoutineEnable = 1;
+				}
+
+				if(CurrentTempValue < (FanSettingValue - 5))
+				{
+					aux_off(AUX6);
+					CheckFanRun = 0;			
+					FanRun = 0;			
+				}
+
+				if(FanManualRun == 1)
+				{
+					FanHeaterAutoOffTime = FAN_HEATER_RUNTIME;
+					FanManualRun = 0;
+					FanRun = 1;
+				}			
+
+				if( DefrostManualRun == 1)
+				{
+					FanHeaterAutoOffTime = 9000;         // 1minute 30second
+					DefrostManualRun = 0;				
+					DefrostRun = 1;
+				}
+					
+				
+				
+				if((CurrentTempValue < HeaterSettingValue) && (CheckHeaterRun == 0))
+				{
+					FanHeaterAutoOffTime = FAN_HEATER_RUNTIME;
+					aux_on(AUX7);
+					CheckHeaterRun = 1;		
+					HeaterRun = 1;
+					CheckRoutineEnable = 1;
+				}
+
+				if(CurrentTempValue > (HeaterSettingValue + 5))
+				{
+					aux_off(AUX7);
+					CheckHeaterRun = 0;		
+					HeaterRun = 0;
+				}
+
+				if(HeaterManualRun == 1)
+				{
+					FanHeaterAutoOffTime = FAN_HEATER_RUNTIME;
+					HeaterManualRun = 0;
+					HeaterRun = 1;
+				}
+			}
+
+			
+		}
+
+
+		// Temperature calculation
+		if(!TemperatureReadTime)	// 1S
+		{
+			TemperatureReadTime = 100;
+
+			AdcResultValue = ADC_CONVERT(TEMPERATURE_ADC);
+			
+    
+    		CurrentTempValue =  (int)((((float)(3.3 / 4096) * AdcResultValue) - 0.5) / 0.01);
+			CurrentTempValue = CurrentTempValue & 0xFF;
+			NewTemperatureEnable = 1;
+		}
+
+		IWDG_ReloadCounter();		// WWDG (WATCHDOG TIMER) 250ms
+
+		
+		// auto on/off run
+		if(!FanHeaterAutoOffTime)
+		{
+			FanHeaterAutoOffTime = FAN_HEATER_RUNTIME;   // 6minute
+
+			if(FanRun == 1) { FanRun = 0; aux_off(AUX6); }
+			if(HeaterRun == 1) { HeaterRun = 0; aux_off(AUX7); }
+			if(DefrostRun == 1) { DefrostRun = 0; aux_off(AUX2); }
+
+			if(CheckRoutineEnable == 1)
+			{
+				CheckRoutineEnable = 0;
+				
+				if( (CheckFanRun == 1) || (CheckHeaterRun == 1))
+				{
+	            	FanHeaterAutoReleaseEnable = 1;
+					FanHeaterAutoReleaseTime = FAN_HEATER_RELEASETIME;				
+				}
+			}
+		}	
+
+		// After auto off during time : 6minute
+		if(FanHeaterAutoReleaseEnable == 1)
+		{					
+			if(!FanHeaterAutoReleaseTime)
+			{
+				FanHeaterAutoOffTime = FAN_HEATER_RUNTIME;
+				FanHeaterAutoReleaseEnable = 0;
+				CheckFanRun = CheckHeaterRun = 0;				
+			}
+		}
+    }
+}
+
+
+#ifdef  USE_FULL_ASSERT
+
+/**
+  * @brief  Reports the name of the source file and the source line number
+  *         where the assert_param error has occurred.
+  * @param  file: pointer to the source file name
+  * @param  line: assert_param error line source number
+  * @retval None
+  */
+void assert_failed(uint8_t* file, uint32_t line)
+{ 
+  /* User can add his own implementation to report the file name and line number,
+     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+
+  /* Infinite loop */
+  while (1)
+  {
+  }
+}
+#endif
+
+/**
+  * @}
+  */
+
+
+/******************* (C) COPYRIGHT 2011 STMicroelectronics *****END OF FILE****/

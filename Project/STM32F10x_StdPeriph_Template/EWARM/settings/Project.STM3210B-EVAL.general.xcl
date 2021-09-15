@@ -1,0 +1,15 @@
+"C:\Program Files\IAR Systems\Embedded Workbench 9.0\arm\bin\armPROC.dll" 
+
+"C:\Program Files\IAR Systems\Embedded Workbench 9.0\arm\bin\armSTLINK.dll" 
+
+"D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Exe\Project.out" 
+
+--plugin="C:\Program Files\IAR Systems\Embedded Workbench 9.0\arm\bin\armbat.dll" 
+
+--device_macro="C:\Program Files\IAR Systems\Embedded Workbench 9.0\arm\config\debugger\ST\STM32F1xx.dmac" 
+
+--flash_loader="C:\Program Files\IAR Systems\Embedded Workbench 9.0\arm\config\flashloader\ST\FlashSTM32F10xx8.board" 
+
+
+
+

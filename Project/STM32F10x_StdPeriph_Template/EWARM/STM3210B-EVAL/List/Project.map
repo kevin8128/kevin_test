@@ -1,0 +1,358 @@
+###############################################################################
+#
+# IAR ELF Linker V9.10.2.313/W64 for ARM                  14/Sep/2021  16:57:49
+# Copyright 2007-2021 IAR Systems AB.
+#
+#    Output file  =
+#        D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Exe\Project.out
+#    Map file     =
+#        D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\List\Project.map
+#    Command line =
+#        -f
+#        D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\List\Project.map.rsp
+#        (D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\User\main.o
+#        D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\StdPeriph_Driver\misc.o
+#        D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\EWARMv5\startup_stm32f10x_md.o
+#        D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\STM32_EVAL\stm32_eval.o
+#        D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\StdPeriph_Driver\stm32f10x_adc.o
+#        D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\StdPeriph_Driver\stm32f10x_bkp.o
+#        D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\StdPeriph_Driver\stm32f10x_can.o
+#        D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\StdPeriph_Driver\stm32f10x_cec.o
+#        D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\StdPeriph_Driver\stm32f10x_crc.o
+#        D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\StdPeriph_Driver\stm32f10x_dac.o
+#        D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\StdPeriph_Driver\stm32f10x_dbgmcu.o
+#        D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\StdPeriph_Driver\stm32f10x_dma.o
+#        D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\StdPeriph_Driver\stm32f10x_exti.o
+#        D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\StdPeriph_Driver\stm32f10x_flash.o
+#        D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\StdPeriph_Driver\stm32f10x_fsmc.o
+#        D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\StdPeriph_Driver\stm32f10x_gpio.o
+#        D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\StdPeriph_Driver\stm32f10x_i2c.o
+#        D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\User\stm32f10x_it.o
+#        D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\StdPeriph_Driver\stm32f10x_iwdg.o
+#        D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\StdPeriph_Driver\stm32f10x_pwr.o
+#        D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\StdPeriph_Driver\stm32f10x_rcc.o
+#        D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\StdPeriph_Driver\stm32f10x_rtc.o
+#        D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\StdPeriph_Driver\stm32f10x_sdio.o
+#        D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\StdPeriph_Driver\stm32f10x_spi.o
+#        D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\StdPeriph_Driver\stm32f10x_tim.o
+#        D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\StdPeriph_Driver\stm32f10x_usart.o
+#        D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\StdPeriph_Driver\stm32f10x_wwdg.o
+#        D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\CMSIS\system_stm32f10x.o
+#        --redirect _Printf=_PrintfFull --redirect _Scanf=_ScanfFull
+#        --no_out_extension -o
+#        D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Exe\Project.out
+#        --map
+#        D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\List\Project.map
+#        --config
+#        D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\stm32f10x_flash.icf
+#        --semihosting --entry __iar_program_start --vfe --text_out locale)
+#
+###############################################################################
+
+*******************************************************************************
+*** RUNTIME MODEL ATTRIBUTES
+***
+
+CppFlavor       = *
+__SystemLibrary = DLib
+__dlib_version  = 6
+
+
+*******************************************************************************
+*** HEAP SELECTION
+***
+
+The basic heap was selected because some modules are built with
+size limitations (and not runtime checking), and --advanced_heap
+was not specified.
+
+
+*******************************************************************************
+*** PLACEMENT SUMMARY
+***
+
+"A0":  place at address 0x800'0000 { ro section .intvec };
+"P1":  place in [from 0x800'0000 to 0x80f'ffff] { ro };
+define block CSTACK with size = 1K, alignment = 8 { };
+define block HEAP with size = 512, alignment = 8 { };
+"P2":  place in [from 0x2000'0000 to 0x2001'7fff] {
+          rw, block CSTACK, block HEAP };
+initialize by copy { rw };
+
+  Section            Kind         Address    Size  Object
+  -------            ----         -------    ----  ------
+"A0":                                        0xec
+  .intvec            ro code   0x800'0000    0xec  startup_stm32f10x_md.o [2]
+                             - 0x800'00ec    0xec
+
+"P1":                                       0x9d8
+  .text              ro code   0x800'00ec   0x2e6  stm32_eval.o [3]
+  .text              ro code   0x800'03d2    0x2a  copy_init3.o [7]
+  .text              ro code   0x800'03fc    0xbc  stm32f10x_rcc.o [4]
+  .text              ro code   0x800'04b8    0xa4  stm32f10x_gpio.o [4]
+  .text              ro code   0x800'055c    0x34  stm32f10x_iwdg.o [4]
+  .text              ro code   0x800'0590   0x150  stm32f10x_usart.o [4]
+  .text              ro code   0x800'06e0    0x68  misc.o [4]
+  .text              ro code   0x800'0748    0xec  system_stm32f10x.o [1]
+  .text              ro code   0x800'0834    0xb8  main.o [5]
+  .text              ro code   0x800'08ec    0x38  zero_init3.o [7]
+  Initializer bytes  const     0x800'0924    0x2c  <for P2-1>
+  .text              ro code   0x800'0950    0x28  data_init.o [7]
+  .iar.init_table    const     0x800'0978    0x24  - Linker created -
+  .text              ro code   0x800'099c    0x1e  cmain.o [7]
+  .text              ro code   0x800'09ba     0x4  low_level_init.o [6]
+  .text              ro code   0x800'09be     0x4  exit.o [6]
+  .text              ro code   0x800'09c2    0x12  stm32f10x_it.o [5]
+  .text              ro code   0x800'09d4     0xa  cexit.o [7]
+  .text              ro code   0x800'09e0    0x14  exit.o [8]
+  .text              ro code   0x800'09f4    0x1c  cstartup_M.o [7]
+  .text              ro code   0x800'0a10    0x10  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0a20     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0a24     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0a28     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0a2c     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0a30     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0a34     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0a38     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0a3c     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0a40     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0a44     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0a48     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0a4c     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0a50     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0a54     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0a58     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0a5c     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0a60     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0a64     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0a68     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0a6c     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0a70     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0a74     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0a78     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0a7c     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0a80     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0a84     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0a88     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0a8c     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0a90     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0a94     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0a98     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0a9c     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0aa0     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0aa4     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0aa8     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0aac     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0ab0     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0ab4     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0ab8     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0abc     0x4  startup_stm32f10x_md.o [2]
+  .text              ro code   0x800'0ac0     0x4  startup_stm32f10x_md.o [2]
+  .rodata            const     0x800'0ac4     0x0  zero_init3.o [7]
+  .rodata            const     0x800'0ac4     0x0  copy_init3.o [7]
+                             - 0x800'0ac4   0x9d8
+
+"P2", part 1 of 3:                           0x2c
+  P2-1                        0x2000'0000    0x2c  <Init block>
+    .data            inited   0x2000'0000     0x4  stm32_eval.o [3]
+    .data            inited   0x2000'0004    0x14  stm32f10x_rcc.o [4]
+    .data            inited   0x2000'0018    0x14  system_stm32f10x.o [1]
+                            - 0x2000'002c    0x2c
+
+"P2", part 2 of 3:                         0x1f50
+  .bss               zero     0x2000'002c   0xfa8  stm32_eval.o [3]
+  .bss               zero     0x2000'0fd4   0xfa8  stm32_eval.o [3]
+                            - 0x2000'1f7c  0x1f50
+
+"P2", part 3 of 3:                          0x400
+  CSTACK                      0x2000'1f80   0x400  <Block>
+    CSTACK           uninit   0x2000'1f80   0x400  <Block tail>
+                            - 0x2000'2380   0x400
+
+Unused ranges:
+
+         From           To      Size
+         ----           --      ----
+   0x800'0ac4   0x80f'ffff  0xf'f53c
+  0x2000'1f7c  0x2000'1f7f       0x4
+  0x2000'2380  0x2001'7fff  0x1'5c80
+
+
+*******************************************************************************
+*** INIT TABLE
+***
+
+          Address      Size
+          -------      ----
+Zero (__iar_zero_init3)
+    1 destination range, total size 0x1f50:
+          0x2000'002c  0x1f50
+
+Copy (__iar_copy_init3)
+    1 source range, total size 0x2c:
+           0x800'0924    0x2c
+    1 destination range, total size 0x2c:
+          0x2000'0000    0x2c
+
+
+
+*******************************************************************************
+*** MODULE SUMMARY
+***
+
+    Module                  ro code  ro data  rw data
+    ------                  -------  -------  -------
+command line/config:
+    -------------------------------------------------
+    Total:
+
+D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\CMSIS: [1]
+    system_stm32f10x.o          236       20       20
+    -------------------------------------------------
+    Total:                      236       20       20
+
+D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\EWARMv5: [2]
+    startup_stm32f10x_md.o      416
+    -------------------------------------------------
+    Total:                      416
+
+D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\STM32_EVAL: [3]
+    stm32_eval.o                742        4    8'020
+    -------------------------------------------------
+    Total:                      742        4    8'020
+
+D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\StdPeriph_Driver: [4]
+    misc.o                      104
+    stm32f10x_gpio.o            164
+    stm32f10x_iwdg.o             52
+    stm32f10x_rcc.o             188       20       20
+    stm32f10x_usart.o           336
+    -------------------------------------------------
+    Total:                      844       20       20
+
+D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\User: [5]
+    main.o                      184
+    stm32f10x_it.o               18
+    -------------------------------------------------
+    Total:                      202
+
+dl7M_tlf.a: [6]
+    exit.o                        4
+    low_level_init.o              4
+    -------------------------------------------------
+    Total:                        8
+
+rt7M_tl.a: [7]
+    cexit.o                      10
+    cmain.o                      30
+    copy_init3.o                 42
+    cstartup_M.o                 28
+    data_init.o                  40
+    zero_init3.o                 56
+    -------------------------------------------------
+    Total:                      206
+
+shb_l.a: [8]
+    exit.o                       20
+    -------------------------------------------------
+    Total:                       20
+
+    Gaps                          2
+    Linker created                        36    1'024
+-----------------------------------------------------
+    Grand Total:              2'676       80    9'084
+
+
+*******************************************************************************
+*** ENTRY LIST
+***
+
+Entry                       Address   Size  Type      Object
+-----                       -------   ----  ----      ------
+.iar.init_table$$Base    0x800'0978          --   Gb  - Linker created -
+.iar.init_table$$Limit   0x800'099c          --   Gb  - Linker created -
+?main                    0x800'099d         Code  Gb  cmain.o [7]
+ADCPrescTable           0x2000'0014    0x4  Data  Lc  stm32f10x_rcc.o [4]
+AHBPrescTable           0x2000'0018   0x10  Data  Gb  system_stm32f10x.o [1]
+APBAHBPrescTable        0x2000'0004   0x10  Data  Lc  stm32f10x_rcc.o [4]
+BusFault_Handler         0x800'09c9    0x2  Code  Gb  stm32f10x_it.o [5]
+CSTACK$$Base            0x2000'1f80          --   Gb  - Linker created -
+CSTACK$$Limit           0x2000'2380          --   Gb  - Linker created -
+DebugMon_Handler         0x800'09cf    0x2  Code  Gb  stm32f10x_it.o [5]
+Delay_us                 0x800'00ed   0x8c  Code  Gb  stm32_eval.o [3]
+FW_UART_Init             0x800'0239   0x3c  Code  Gb  stm32_eval.o [3]
+FW_UART_putchar          0x800'0293    0x8  Code  Gb  stm32_eval.o [3]
+GPIOClockEnable          0x800'0179   0x1e  Code  Gb  stm32_eval.o [3]
+GPIO_Init                0x800'04b9   0xa4  Code  Gb  stm32f10x_gpio.o [4]
+HardFault_Handler        0x800'09c5    0x2  Code  Gb  stm32f10x_it.o [5]
+IWDG_Enable              0x800'0579    0xa  Code  Gb  stm32f10x_iwdg.o [4]
+IWDG_ReloadCounter       0x800'056f    0xa  Code  Gb  stm32f10x_iwdg.o [4]
+IWDG_SetPrescaler        0x800'0563    0x6  Code  Gb  stm32f10x_iwdg.o [4]
+IWDG_SetReload           0x800'0569    0x6  Code  Gb  stm32f10x_iwdg.o [4]
+IWDG_Setting             0x800'0211   0x28  Code  Gb  stm32_eval.o [3]
+IWDG_WriteAccessCmd      0x800'055d    0x6  Code  Gb  stm32f10x_iwdg.o [4]
+LsiFreq                 0x2000'0000    0x4  Data  Gb  stm32_eval.o [3]
+MCO_Init                 0x800'0197   0x26  Code  Gb  stm32_eval.o [3]
+MemManage_Handler        0x800'09c7    0x2  Code  Gb  stm32f10x_it.o [5]
+NMI_Handler              0x800'09c3    0x2  Code  Gb  stm32f10x_it.o [5]
+NVIC_Init                0x800'06e1   0x56  Code  Gb  misc.o [4]
+PendSV_Handler           0x800'09d1    0x2  Code  Gb  stm32f10x_it.o [5]
+RASPBERRYPI_UART_Init    0x800'029b   0x36  Code  Gb  stm32_eval.o [3]
+RCC_APB1PeriphClockCmd   0x800'0481   0x14  Code  Gb  stm32f10x_rcc.o [4]
+RCC_APB2PeriphClockCmd   0x800'046d   0x14  Code  Gb  stm32f10x_rcc.o [4]
+RCC_GetClocksFreq        0x800'03fd   0x70  Code  Gb  stm32f10x_rcc.o [4]
+RCC_MCOConfig            0x800'0495    0x6  Code  Gb  stm32f10x_rcc.o [4]
+Region$$Table$$Base      0x800'0978          --   Gb  - Linker created -
+Region$$Table$$Limit     0x800'099c          --   Gb  - Linker created -
+SVC_Handler              0x800'09cd    0x2  Code  Gb  stm32f10x_it.o [5]
+SysTick_Handler          0x800'09d3    0x2  Code  Gb  stm32f10x_it.o [5]
+SystemCoreClock         0x2000'0028    0x4  Data  Gb  system_stm32f10x.o [1]
+SystemInit               0x800'0749   0xd6  Code  Gb  system_stm32f10x.o [1]
+UART_BYPASS_RASPI_to_FW
+                         0x800'0389   0x1e  Code  Gb  stm32_eval.o [3]
+UART_OUT_LED_Init        0x800'01bd   0x10  Code  Gb  stm32_eval.o [3]
+UART_OUT_LED_ON_OFF      0x800'01cd   0x10  Code  Gb  stm32_eval.o [3]
+USART1_IRQHandler        0x800'0275   0x1e  Code  Gb  stm32_eval.o [3]
+USART2_IRQHandler        0x800'0333   0x1e  Code  Gb  stm32_eval.o [3]
+USART_ClearITPendingBit
+                         0x800'06d1    0xa  Code  Gb  stm32f10x_usart.o [4]
+USART_Cmd                0x800'0631   0x14  Code  Gb  stm32f10x_usart.o [4]
+USART_GetFlagStatus      0x800'0685    0xe  Code  Gb  stm32f10x_usart.o [4]
+USART_GetITStatus        0x800'0693   0x3e  Code  Gb  stm32f10x_usart.o [4]
+USART_ITConfig           0x800'0645   0x32  Code  Gb  stm32f10x_usart.o [4]
+USART_Init               0x800'0591   0x9c  Code  Gb  stm32f10x_usart.o [4]
+USART_SendData           0x800'067d    0x8  Code  Gb  stm32f10x_usart.o [4]
+UsageFault_Handler       0x800'09cb    0x2  Code  Gb  stm32f10x_it.o [5]
+WIEGAND_IN_LED_Init      0x800'01dd    0xe  Code  Gb  stm32_eval.o [3]
+WIEGAND_IN_LED_ON_OFF    0x800'0201   0x10  Code  Gb  stm32_eval.o [3]
+__cmain                  0x800'099d         Code  Gb  cmain.o [7]
+__exit                   0x800'09e1   0x14  Code  Gb  exit.o [8]
+__iar_copy_init3         0x800'03d3   0x2a  Code  Gb  copy_init3.o [7]
+__iar_data_init3         0x800'0951   0x28  Code  Gb  data_init.o [7]
+__iar_program_start      0x800'09f5         Code  Gb  cstartup_M.o [7]
+__iar_zero_init3         0x800'08ed   0x38  Code  Gb  zero_init3.o [7]
+__low_level_init         0x800'09bb    0x4  Code  Gb  low_level_init.o [6]
+__vector_table           0x800'0000         Data  Gb  startup_stm32f10x_md.o [2]
+_call_main               0x800'09a9         Code  Gb  cmain.o [7]
+_exit                    0x800'09d5         Code  Gb  cexit.o [7]
+exit                     0x800'09bf    0x4  Code  Gb  exit.o [6]
+main                     0x800'0835   0xb8  Code  Gb  main.o [5]
+stFW_UART               0x2000'002c  0xfa8  Data  Gb  stm32_eval.o [3]
+stRASPBERRYPI_UART      0x2000'0fd4  0xfa8  Data  Gb  stm32_eval.o [3]
+
+
+[1] = D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\CMSIS
+[2] = D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\EWARMv5
+[3] = D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\STM32_EVAL
+[4] = D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\StdPeriph_Driver
+[5] = D:\Wiegand_Converter_FW\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template\EWARM\STM3210B-EVAL\Obj\User
+[6] = dl7M_tlf.a
+[7] = rt7M_tl.a
+[8] = shb_l.a
+
+  2'676 bytes of readonly  code memory
+     80 bytes of readonly  data memory
+  9'084 bytes of readwrite data memory
+
+Errors: none
+Warnings: none
